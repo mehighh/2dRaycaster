@@ -18,10 +18,9 @@ class Args:
 
 def run(args):
     args.screen.fill(0)
+    args.point.update()
     for o in args.obstacles:
         o.draw()
-
-    args.point.update()
 
 if __name__ == '__main__':
     pygame.init()

@@ -9,7 +9,7 @@ class Obstacle:
         self.screen = args.screen
         self.size = args.size
 
-        self.width = 5
+        self.width = 7
         self.start_pos = [random.randint(0,self.size[0]),random.randint(0,self.size[1])]
         self.end_pos = [random.randint(0,self.size[0]),random.randint(0,self.size[1])]
     def draw(self):
