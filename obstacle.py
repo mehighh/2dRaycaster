@@ -2,7 +2,7 @@
 import pygame
 import random
 
-white = (255,255,255)
+red = (255,0,0)
 
 class Obstacle:
     def __init__(self,args):
@@ -10,9 +10,8 @@ class Obstacle:
         self.size = args.size
 
         self.width = 5
-        self.start_pos = [50,100]
-        self.end_pos = [10,300]
-
+        self.start_pos = [random.randint(0,self.size[0]),random.randint(0,self.size[1])]
+        self.end_pos = [random.randint(0,self.size[0]),random.randint(0,self.size[1])]
     def draw(self):
-        pygame.draw.line(self.screen,white,
+        pygame.draw.line(self.screen,red,
                 self.start_pos,self.end_pos,self.width)

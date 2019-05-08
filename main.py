@@ -5,11 +5,11 @@ from point import Point
 
 class Args:
     def __init__(self):
-        self.size = (600,600)
+        self.size = (800,800)
         self.screen = pygame.display.set_mode(self.size)
         pygame.display.set_caption('Raycaster')
 
-        self.obstaclecount = 1
+        self.obstaclecount = 5
         self.obstacles = []
         for _ in range(self.obstaclecount):
             self.obstacles.append(Obstacle(self))
@@ -17,6 +17,7 @@ class Args:
         self.point = Point(self)
 
 def run(args):
+    args.screen.fill(0)
     for o in args.obstacles:
         o.draw()
 
@@ -28,6 +29,7 @@ if __name__ == '__main__':
     run(ARGS)
     while True:
         for event in pygame.event.get():
+            ARGS.point.pos = pygame.mouse.get_pos()
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
