@@ -24,13 +24,22 @@ class Point:
             loopr = 360//dif
         else:
             loopr = int(360*(1/dif))
+        points = []
         for _ in range(loopr):
             point = [
                     self.pos[0] + math.cos(math.radians(degree)) * length,
                     self.pos[1] + math.sin(math.radians(degree)) * length
                     ]
-            if not self.intersect(point): self.drawray(point)
+            try:
+                point = self.intersect(point)
+            except: pass
+
+            #self.drawray(point)
+            points.append(point)
             degree+=dif
+
+        pygame.draw.polygon(self.screen,white,points,0)
+        pygame.draw.circle(self.screen,(0),self.pos,8,2)
 
     def intersect(self,point):
         is_points = []
@@ -48,13 +57,10 @@ class Point:
                 if t > 0 and t < 1 and u > 0:
                     is_points.append([x1+t*(x2-x1),y1+t*(y2-y1)])
 
-        if is_points == []: return
-
         is_distances = []
         for p in is_points:
             is_distances.append(math.sqrt((p[0]-x3)**2+(p[1]-y3)**2))
-        self.drawray(is_points[is_distances.index(min(is_distances))])
-        return True
+        return is_points[is_distances.index(min(is_distances))]
 
     def drawray(self,point):
         pygame.draw.line(self.screen,white,self.pos,point,1)
