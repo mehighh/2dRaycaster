@@ -82,10 +82,10 @@ class Point:
   def drawwalls(self):
     i = 0
     for point,dist in zip(self.points,self.dists):
-      shade = 255 * (self.view_distance - dist) / self.view_distance
-      size = self.size[1]*(dist/self.view_distance)
-      pygame.draw.line(self.screen,(shade,shade,shade),
-          (i,int(size/2)),(i,self.size[1]-int(size/2)),1)
+      shade = 255 * (((self.view_distance - dist) / self.view_distance)**2)
+      size = (self.size[1]*((self.view_distance - dist)/self.view_distance)) - self.size[1]/5
+      if size < 0: size = 0
+      pygame.draw.line(self.screen,(shade,shade,shade),(i,int(self.size[1]/2 + size/2)+20),(i,int(self.size[1]/2-size/2)-20),1)
       i += 1
     for point in self.points:
       self.drawray(point)
