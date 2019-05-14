@@ -7,9 +7,9 @@ red = (255,0,0)
 class Obstacle:
     def __init__(self,args):
         self.screen = args.screen
-        self.size = args.size
+        self.size = [int(i / 3) for i in args.size]
 
-        self.width = 9
+        self.width = 4
         self.start_pos = [random.randint(0,self.size[0]),random.randint(0,self.size[1])]
         self.end_pos = [random.randint(0,self.size[0]),random.randint(0,self.size[1])]
     def draw(self):
