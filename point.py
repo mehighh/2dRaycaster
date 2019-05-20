@@ -47,11 +47,11 @@ class Point:
                                   (point[1]-self.pos[1])**2))
       degree+=dif
 
+    self.drawwalls()
     # This draws the solid poligon
-    # pygame.draw.polygon(self.screen,white,self.points,0)
+    pygame.draw.polygon(self.screen,white,([list(self.pos)] + self.points),0)
     # This draws the view point
     # print('update')
-    self.drawwalls()
     pygame.draw.circle(self.screen,(0,0,255),self.pos,8,2)
 
   def intersect(self,point):
@@ -85,7 +85,8 @@ class Point:
       shade = 255 * (((self.view_distance - dist) / self.view_distance)**2)
       size = (self.size[1]*((self.view_distance - dist)/self.view_distance)) - self.size[1]/5
       if size < 0: size = 0
-      pygame.draw.line(self.screen,(shade,shade,shade),(i,int(self.size[1]/2 + size/2)+20),(i,int(self.size[1]/2-size/2)-20),1)
+      pygame.draw.line(self.screen,(shade,shade,shade),
+      (i,int(self.size[1]/2 + size/2)+100),(i,int(self.size[1]/2-size/2)+40),1)
       i += 1
-    for point in self.points:
-      self.drawray(point)
+    # for point in self.points:
+    #   self.drawray(point)

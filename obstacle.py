@@ -16,5 +16,5 @@ class Obstacle:
         random.randint(0,self.size[1])]
   def draw(self):
     pygame.draw.line(self.screen,red,
-       
+
         self.start_pos,self.end_pos,self.width)
